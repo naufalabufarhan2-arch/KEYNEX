@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KEYNEX - Smart Key Management & Room Occupancy System</title>
+  <!-- FontAwesome & Fonts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="brand-container">
+      <div class="brand-icon">
+        <i class="fa-solid fa-key"></i>
+      </div>
+      <div>
+        <div class="brand-title">KEYNEX</div>
+        <div class="brand-subtitle">Smart Occupancy</div>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-section-title">Menu Utama</div>
+      <a href="./index.html" class="nav-item active">
+        <i class="fa-solid fa-chart-pie"></i>
+        <span>Dashboard</span>
+      </a>
+      <a href="./booking.html" class="nav-item">
+        <i class="fa-solid fa-calendar-plus"></i>
+        <span>Peminjaman Ruangan</span>
+      </a>
+      <a href="./rooms.html" class="nav-item">
+        <i class="fa-solid fa-door-open"></i>
+        <span>Status Ruangan</span>
+      </a>
+      <a href="./lockers.html" class="nav-item">
+        <i class="fa-solid fa-boxes-stacked"></i>
+        <span>Loker Kunci</span>
+      </a>
+      <a href="./history.html" class="nav-item">
+        <i class="fa-solid fa-clock-rotate-left"></i>
+        <span>Riwayat Peminjaman</span>
+      </a>
+
+      <div class="nav-section-title">Hardware IoT</div>
+      <a href="./lockers.html" class="nav-item">
+        <i class="fa-solid fa-microchip"></i>
+        <span>Monitoring Loker</span>
+      </a>
+      <a href="#" class="nav-item" onclick="alert('KEYNEX Controller Hardware System Status: Online v2.4')">
+        <i class="fa-solid fa-sliders"></i>
+        <span>Pengaturan System</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="device-badge">
+        <div class="pulse-dot"></div>
+        <div>
+          <div style="font-size:12px; font-weight:700;">Raspberry Pi 4</div>
+          <div style="font-size:10px; color:var(--text-muted)">Status: Connected</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN WRAPPER -->
+  <div class="main-wrapper">
+    <!-- TOP HEADER -->
+    <header class="top-header">
+      <div class="header-title-section">
+        <h1><i class="fa-solid fa-grip" style="color:var(--accent-cyan)"></i> Dashboard Utama</h1>
+        <p>Smart Key Management & Room Occupancy System</p>
+      </div>
+
+      <div class="header-right-tools">
+        <div class="clock-widget">
+          <i class="fa-solid fa-clock" style="color:var(--accent-cyan)"></i>
+          <span id="clock-time" class="clock-time">00:00:00</span>
+          <span id="clock-date" class="clock-date">Loading...</span>
+        </div>
+
+        <button id="open-kiosk-btn" class="kiosk-btn">
+          <i class="fa-solid fa-touchscreen"></i> Kiosk Touchscreen PIN
+        </button>
+      </div>
+    </header>
+
+    <!-- CONTENT CONTAINER -->
+    <main class="content-container">
+      
+      <!-- STATS GRID -->
+      <section class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon total"><i class="fa-solid fa-building"></i></div>
+          <div class="stat-info">
+            <span class="stat-label">Total Ruangan</span>
+            <span id="stat-total" class="stat-number">12</span>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon available"><i class="fa-solid fa-circle-check"></i></div>
+          <div class="stat-info">
+            <span class="stat-label">Tersedia</span>
+            <span id="stat-available" class="stat-number">8</span>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon occupied"><i class="fa-solid fa-door-closed"></i></div>
+          <div class="stat-info">
+            <span class="stat-label">Sedang Digunakan</span>
+            <span id="stat-occupied" class="stat-number">3</span>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon upcoming"><i class="fa-solid fa-hourglass-half"></i></div>
+          <div class="stat-info">
+            <span class="stat-label">Akan Digunakan</span>
+            <span id="stat-upcoming" class="stat-number">1</span>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon late"><i class="fa-solid fa-triangle-exclamation"></i></div>
+          <div class="stat-info">
+            <span class="stat-label">Terlambat</span>
+            <span id="stat-late" class="stat-number">0</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- HARDWARE STATUS BANNER -->
+      <section style="display:flex; flex-direction:column; gap:12px;">
+        <h2 style="font-size:16px; font-weight:700; color:var(--text-main);"><i class="fa-solid fa-server" style="color:var(--accent-cyan)"></i> Status Perangkat KEYNEX</h2>
+        <div id="system-status-container" class="system-status-grid"></div>
+      </section>
+
+      <!-- MAIN DASHBOARD CONTENT: ROOM CARDS & CHARTS -->
+      <div style="display:grid; grid-template-columns: 2fr 1fr; gap:28px;">
+        <!-- LEFT: LIVE ROOM OCCUPANCY CARDS -->
+        <section style="display:flex; flex-direction:column; gap:16px;">
+          <div style="display:flex; align-items:center; justify-content:space-between;">
+            <h2 style="font-size:18px; font-weight:700;"><i class="fa-solid fa-layer-group" style="color:var(--accent-cyan)"></i> Status Ruangan Realtime</h2>
+            <a href="./rooms.html" style="font-size:13px; color:var(--accent-cyan); text-decoration:none; font-weight:700;">Lihat Semua <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+          <div id="dashboard-rooms-grid" class="rooms-grid"></div>
+        </section>
+
+        <!-- RIGHT: CHART & RECENT ACTIVITY FEED -->
+        <section style="display:flex; flex-direction:column; gap:24px;">
+          <!-- CHART CARD -->
+          <div class="stat-card" style="flex-direction:column; align-items:stretch; height: 280px; padding:20px;">
+            <h3 style="font-size:14px; font-weight:700; margin-bottom:12px;"><i class="fa-solid fa-chart-line" style="color:var(--accent-cyan)"></i> Tren Penggunaan Ruangan</h3>
+            <div style="flex:1; position:relative;">
+              <canvas id="occupancyChart"></canvas>
+            </div>
+          </div>
+
+          <!-- ACTIVITY FEED CARD -->
+          <div class="stat-card" style="flex-direction:column; align-items:stretch; padding:20px;">
+            <h3 style="font-size:14px; font-weight:700; margin-bottom:12px;"><i class="fa-solid fa-list-check" style="color:var(--accent-cyan)"></i> Aktivitas Terbaru</h3>
+            <div id="activity-feed"></div>
+          </div>
+        </section>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- KIOSK TOUCHSCREEN PIN SIMULATOR MODAL -->
+  <div id="kiosk-modal" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title">
+          <i class="fa-solid fa-calculator" style="color:var(--accent-cyan)"></i> KEYNEX Kiosk Controller
+        </div>
+        <button id="close-kiosk-btn" class="close-modal"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <div class="kiosk-screen">
+        <div id="kiosk-status-text" class="kiosk-status-text">MASUKKAN 6-DIGIT KODE ACCESS PIN</div>
+        <div id="kiosk-pin-display" class="kiosk-pin-display">••••••</div>
+      </div>
+
+      <div class="kiosk-keypad">
+        <button class="key-btn" data-val="1">1</button>
+        <button class="key-btn" data-val="2">2</button>
+        <button class="key-btn" data-val="3">3</button>
+
+        <button class="key-btn" data-val="4">4</button>
+        <button class="key-btn" data-val="5">5</button>
+        <button class="key-btn" data-val="6">6</button>
+
+        <button class="key-btn" data-val="7">7</button>
+        <button class="key-btn" data-val="8">8</button>
+        <button class="key-btn" data-val="9">9</button>
+
+        <button class="key-btn clear" data-val="clear"><i class="fa-solid fa-delete-left"></i></button>
+        <button class="key-btn" data-val="0">0</button>
+        <button class="key-btn submit" data-val="submit"><i class="fa-solid fa-check"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JS SCRIPTS -->
+  <script src="./assets/js/store.js"></script>
+  <script src="./assets/js/dashboard.js"></script>
+</body>
+</html>

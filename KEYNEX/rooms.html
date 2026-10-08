@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Status Ruangan - KEYNEX</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="brand-container">
+      <div class="brand-icon">
+        <i class="fa-solid fa-key"></i>
+      </div>
+      <div>
+        <div class="brand-title">KEYNEX</div>
+        <div class="brand-subtitle">Smart Occupancy</div>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-section-title">Menu Utama</div>
+      <a href="./index.html" class="nav-item">
+        <i class="fa-solid fa-chart-pie"></i>
+        <span>Dashboard</span>
+      </a>
+      <a href="./booking.html" class="nav-item">
+        <i class="fa-solid fa-calendar-plus"></i>
+        <span>Peminjaman Ruangan</span>
+      </a>
+      <a href="./rooms.html" class="nav-item active">
+        <i class="fa-solid fa-door-open"></i>
+        <span>Status Ruangan</span>
+      </a>
+      <a href="./lockers.html" class="nav-item">
+        <i class="fa-solid fa-boxes-stacked"></i>
+        <span>Loker Kunci</span>
+      </a>
+      <a href="./history.html" class="nav-item">
+        <i class="fa-solid fa-clock-rotate-left"></i>
+        <span>Riwayat Peminjaman</span>
+      </a>
+
+      <div class="nav-section-title">Hardware IoT</div>
+      <a href="./lockers.html" class="nav-item">
+        <i class="fa-solid fa-microchip"></i>
+        <span>Monitoring Loker</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="device-badge">
+        <div class="pulse-dot"></div>
+        <div>
+          <div style="font-size:12px; font-weight:700;">Raspberry Pi 4</div>
+          <div style="font-size:10px; color:var(--text-muted)">Status: Connected</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN WRAPPER -->
+  <div class="main-wrapper">
+    <header class="top-header">
+      <div class="header-title-section">
+        <h1><i class="fa-solid fa-door-open" style="color:var(--accent-cyan)"></i> Status Okupansi Ruangan</h1>
+        <p>Monitoring ketersediaan ruangan, peminjam, dan status kunci fisik secara langsung</p>
+      </div>
+    </header>
+
+    <main class="content-container">
+      <!-- TOOLBAR: SEARCH & FILTERS -->
+      <div class="table-toolbar">
+        <div class="search-box">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="search-room-input" class="form-input" placeholder="Cari Kode atau Nama Ruangan...">
+        </div>
+
+        <div class="filter-group">
+          <button class="btn-secondary filter-btn active" data-filter="all">Semua</button>
+          <button class="btn-secondary filter-btn" data-filter="tersedia"><i class="fa-solid fa-circle" style="color:var(--accent-green)"></i> Tersedia</button>
+          <button class="btn-secondary filter-btn" data-filter="digunakan"><i class="fa-solid fa-circle" style="color:var(--accent-red)"></i> Sedang Digunakan</button>
+          <button class="btn-secondary filter-btn" data-filter="akan_digunakan"><i class="fa-solid fa-circle" style="color:var(--accent-yellow)"></i> Akan Digunakan</button>
+        </div>
+      </div>
+
+      <!-- ROOM CARDS GRID -->
+      <div id="rooms-page-grid" class="rooms-grid"></div>
+    </main>
+  </div>
+
+  <script src="./assets/js/store.js"></script>
+  <script src="./assets/js/rooms.js"></script>
+</body>
+</html>

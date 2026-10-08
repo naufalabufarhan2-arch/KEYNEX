@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loker Kunci - KEYNEX</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="brand-container">
+      <div class="brand-icon">
+        <i class="fa-solid fa-key"></i>
+      </div>
+      <div>
+        <div class="brand-title">KEYNEX</div>
+        <div class="brand-subtitle">Smart Occupancy</div>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-section-title">Menu Utama</div>
+      <a href="./index.html" class="nav-item">
+        <i class="fa-solid fa-chart-pie"></i>
+        <span>Dashboard</span>
+      </a>
+      <a href="./booking.html" class="nav-item">
+        <i class="fa-solid fa-calendar-plus"></i>
+        <span>Peminjaman Ruangan</span>
+      </a>
+      <a href="./rooms.html" class="nav-item">
+        <i class="fa-solid fa-door-open"></i>
+        <span>Status Ruangan</span>
+      </a>
+      <a href="./lockers.html" class="nav-item active">
+        <i class="fa-solid fa-boxes-stacked"></i>
+        <span>Loker Kunci</span>
+      </a>
+      <a href="./history.html" class="nav-item">
+        <i class="fa-solid fa-clock-rotate-left"></i>
+        <span>Riwayat Peminjaman</span>
+      </a>
+
+      <div class="nav-section-title">Hardware IoT</div>
+      <a href="./lockers.html" class="nav-item active">
+        <i class="fa-solid fa-microchip"></i>
+        <span>Monitoring Loker</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="device-badge">
+        <div class="pulse-dot"></div>
+        <div>
+          <div style="font-size:12px; font-weight:700;">Raspberry Pi 4</div>
+          <div style="font-size:10px; color:var(--text-muted)">Status: Connected</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN WRAPPER -->
+  <div class="main-wrapper">
+    <header class="top-header">
+      <div class="header-title-section">
+        <h1><i class="fa-solid fa-boxes-stacked" style="color:var(--accent-cyan)"></i> Visual 16-Slot Loker Kunci KEYNEX</h1>
+        <p>Monitoring Solenoid Driver, Sensor IR Kunci, dan Pengembalian Kunci Realtime</p>
+      </div>
+    </header>
+
+    <main class="content-container">
+      <div class="system-status-card" style="margin-bottom: 8px;">
+        <div class="system-info-left">
+          <i class="fa-solid fa-microchip" style="font-size:24px; color:var(--accent-cyan)"></i>
+          <div>
+            <div class="system-name">Raspberry Pi Solenoid Controller Array</div>
+            <div class="system-sub">16 Slot Solenoid Locks & Photo-Interrupter Sensors Sync Status: ONLINE</div>
+          </div>
+        </div>
+        <div style="font-size:12px; color:var(--text-muted);">
+          Gunakan tombol simulasi pada tiap slot untuk menguji pengembalian kunci atau pengujian solenoid.
+        </div>
+      </div>
+
+      <!-- 16 SLOTS VISUAL MATRIX -->
+      <div id="locker-matrix-container" class="locker-matrix"></div>
+    </main>
+  </div>
+
+  <script src="./assets/js/store.js"></script>
+  <script src="./assets/js/lockers.js"></script>
+</body>
+</html>
