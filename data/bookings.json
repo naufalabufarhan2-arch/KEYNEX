@@ -1,0 +1,58 @@
+[
+  {
+    "booking_id": "BK-20261008-001",
+    "nim": "4242401024",
+    "nama": "Naufal Abu Farhan",
+    "no_hp": "081234567890",
+    "kelas": "TRE-PAGI A",
+    "ruangan": "A-202",
+    "tanggal": "2026-10-08",
+    "jam_mulai": "13:00",
+    "jam_selesai": "15:00",
+    "pin": "482951",
+    "status": "sedang digunakan",
+    "keperluan": "Praktikum IoT & Embedded System"
+  },
+  {
+    "booking_id": "BK-20261008-002",
+    "nim": "4242401015",
+    "nama": "Ahmad Rizky",
+    "no_hp": "082198765432",
+    "kelas": "TRE-PAGI B",
+    "ruangan": "A-204",
+    "tanggal": "2026-10-08",
+    "jam_mulai": "14:30",
+    "jam_selesai": "16:30",
+    "pin": "129845",
+    "status": "menunggu",
+    "keperluan": "Diskusi Proyek Akhir"
+  },
+  {
+    "booking_id": "BK-20261008-003",
+    "nim": "4242401088",
+    "nama": "Siti Nurhaliza",
+    "no_hp": "085712345678",
+    "kelas": "TRE-MALAM A",
+    "ruangan": "B-101",
+    "tanggal": "2026-10-08",
+    "jam_mulai": "13:00",
+    "jam_selesai": "16:00",
+    "pin": "734190",
+    "status": "sedang digunakan",
+    "keperluan": "Kuliah Pemrograman Sistem"
+  },
+  {
+    "booking_id": "BK-20261008-004",
+    "nim": "4242401005",
+    "nama": "Budi Santoso",
+    "no_hp": "081399887766",
+    "kelas": "TRE-PAGI A",
+    "ruangan": "B-102",
+    "tanggal": "2026-10-08",
+    "jam_mulai": "12:30",
+    "jam_selesai": "14:30",
+    "pin": "654321",
+    "status": "sedang digunakan",
+    "keperluan": "Pengujian Sensor Loker"
+  }
+]
